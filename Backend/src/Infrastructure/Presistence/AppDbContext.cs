@@ -20,9 +20,10 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-        
+
+        modelBuilder.Entity<Review>()
+            .HasKey(o => new { o.UserId, o.BookId });
     }
     
     protected override void OnConfiguring(DbContextOptionsBuilder options)
