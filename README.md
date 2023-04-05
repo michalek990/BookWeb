@@ -3,5 +3,5 @@ CRUD application that allows us to browse books and share our opinions on books 
 
 
 ## 1. Database project
+![image](https://user-images.githubusercontent.com/93988101/230216865-6db3bb0b-5a3b-43e8-94f7-d69405e4a194.png)
 
-![image](https://user-images.githubusercontent.com/93988101/229935282-066997ed-9023-4f87-aa74-590c3bda2746.png)
