@@ -13,9 +13,9 @@ public class AppDbContext : DbContext
         _configuration = configuration;
     }
     
-    private DbSet<Book> Books => Set<Book>();
-    private DbSet<Review> Reviews  => Set<Review>();
-    private DbSet<User> Users  => Set<User>();
+    public DbSet<Book> Books => Set<Book>();
+    public DbSet<Review> Reviews  => Set<Review>();
+    public DbSet<User> Users  => Set<User>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
