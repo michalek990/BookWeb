@@ -3,7 +3,7 @@ using Domain.Common.Interfaces;
 
 namespace Domain.Entities;
 
-public class Review : ICreatable, IUpdatable
+public class Review : BaseEntity
 {
     public long BookId { get; set; }
     public virtual Book Book { get; set; }

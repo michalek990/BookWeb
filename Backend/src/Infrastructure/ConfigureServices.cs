@@ -1,4 +1,5 @@
 using Domain.Interfaces;
+using Domain.Interfaces.Repositories;
 using Infrastructure.Presistence;
 using Infrastructure.Repositories;
 
@@ -13,6 +14,9 @@ public static class ConfigureServices
 
     public static void AddRepositories(this IServiceCollection services)
     {
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IReviewRepository, ReviewRepository>();
+        services.AddScoped<IBookRepository, BookRepository>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
     }
 }
