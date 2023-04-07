@@ -44,6 +44,11 @@ public class AppDbContext : DbContext
             .HasConversion<string>()
             .IsRequired();
         
+        modelBuilder.Entity<User>()
+            .Property(u => u.AccountStatus)
+            .HasConversion<string>()
+            .IsRequired();
+        
         
         modelBuilder.Entity<Review>()
             .Property(r => r.Rate)
