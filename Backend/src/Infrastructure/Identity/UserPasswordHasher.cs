@@ -12,7 +12,7 @@ public class UserPasswordHasher : IUserPasswordHasher
     {
         _passwordHasher = passwordHasher;
     }
-
+    
     public string HashPassword(string password, User user)
     {
         return _passwordHasher.HashPassword(user, password);

@@ -6,7 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <OutputType>Library</OutputType>
     </PropertyGroup>
-
+    
     <ItemGroup>
         <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
         <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.1" />
@@ -14,28 +14,9 @@
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     </ItemGroup>
-
+    
     <ItemGroup>
-        <ProjectReference Include="..\Domain\Domain.csproj" />
+      <ProjectReference Include="..\Domain\Domain.csproj" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Book\Commands\DeleteBook" />
-      <Folder Include="Book\Commands\UpdateBook" />
-      <Folder Include="Book\Queries\GetAllBooks" />
-      <Folder Include="Book\Queries\GetBook" />
-      <Folder Include="Review\Commands\CreateReview" />
-      <Folder Include="Review\Commands\DeleteReview" />
-      <Folder Include="Review\Commands\UpdateReview" />
-      <Folder Include="Review\Queries\GetAllBookReviews" />
-      <Folder Include="Review\Queries\GetAllReviews" />
-      <Folder Include="Review\Queries\GetReview" />
-      <Folder Include="User\Commands\AuthenticateUser" />
-      <Folder Include="User\Commands\DeactivateUser" />
-      <Folder Include="User\Commands\RegisterUser" />
-      <Folder Include="User\Queries\GetAllUsers" />
-      <Folder Include="User\Queries\GetLoggedUser" />
-      <Folder Include="User\Queries\GetUser" />
-    </ItemGroup>
-
+    
 </Project>

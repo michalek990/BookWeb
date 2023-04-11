@@ -1,7 +1,8 @@
-﻿using Application.Book.Commands.CreateBook;
+﻿using Application.Books.Commands.CreateBook;
 using Application.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using WebAPI.Common.Authorization;
 
 namespace WebAPI.Controllers.Book;
 
@@ -16,6 +17,7 @@ public sealed class BookCommandController : ControllerBase
         _mediator = mediator;
     }
 
+   // [AuthorizeUser]
     [HttpPost]
     public async Task<ActionResult<CreateBookDto>> CreateNewBook([FromBody] CreateBookCommand command)
     {

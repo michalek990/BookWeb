@@ -29,4 +29,10 @@ public class UserRepository : BaseRepository<User>, IUserRepository
             .Where(u => u.Username == username)
             .AnyAsync(u => u.AccountStatus == AccountStatus.Banned);
     }
+    
+    public async Task<bool> ExistByEmail(string email)
+    {
+        return await Context.Users
+            .AnyAsync(u => u.Email == email);
+    }
 }

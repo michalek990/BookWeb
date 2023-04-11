@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Infrastructure.Identity.Policies.UserNotBannedRequirement;
 
-public class UserNotBannedRequirementHandler : AuthorizationHandler<UserNotBannedRequirment.UserNotBannedRequirement>
+public class UserNotBannedRequirementHandler : AuthorizationHandler<UserNotBannedRequirement>
 {
     private readonly IUserRepository _userRepository;
 
@@ -14,7 +14,7 @@ public class UserNotBannedRequirementHandler : AuthorizationHandler<UserNotBanne
         _userRepository = unitOfWork.Users;
     }
 
-    protected override async Task HandleRequirementAsync(AuthorizationHandlerContext context, UserNotBannedRequirment.UserNotBannedRequirement requirement)
+    protected override async Task HandleRequirementAsync(AuthorizationHandlerContext context, UserNotBannedRequirement requirement)
     {
         var username = context
             .User

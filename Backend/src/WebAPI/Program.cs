@@ -6,34 +6,40 @@ using WebAPI.Middlewares;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddBeforeSaveChangesPipeline();
+builder.Services.AddApplicationServices();
+builder.Services.AddRepositories();
 builder.Services.AddAuthenticationAndAuthorization(builder.Configuration, builder.Environment);
 builder.Services.AddAuthorizationPolicies();
-builder.Services.AddApplicationServices();
-builder.Services.AddInfrastructureServices(builder.Configuration);
-builder.Services.AddRepositories();
 builder.Services.AddWebApiServices();
 builder.Services.AddSwagger();
 
+
+// Configure the HTTP request pipeline.
 var app = builder.Build();
 
 app.UseMiddleware<ExceptionHandlerMiddleware>();
 
-// Configure the HTTP request pipeline.
+app.UseAuthentication();
+
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+else
+{
+    app.UseHttpsRedirection();
+}
 
-app.UseHttpsRedirection();
+app.UseRouting();
 
 app.UseAuthorization();
 
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }

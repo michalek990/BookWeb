@@ -102,7 +102,7 @@ public class ExceptionHandlerMiddleware : IMiddleware
             Timestamp: DateTime.UtcNow
         );
     }
-    
+
     private ErrorMessage HandleUnexpectedException(Exception e)
     {
         Console.WriteLine(e.Message);
