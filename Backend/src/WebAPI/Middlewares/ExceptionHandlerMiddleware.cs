@@ -39,6 +39,7 @@ public class ExceptionHandlerMiddleware : IMiddleware
             NotFoundException notFoundException => HandleNotFoundException(notFoundException),
             UnauthorizedException unauthorizedException => HandleUnauthorizedException(unauthorizedException),
             ForbiddenException forbiddenException => HandleForbiddenException(forbiddenException),
+            ConflictException conflictException => HandleConflictException(conflictException),
             _ => HandleUnexpectedException(e)
         };
 
@@ -91,6 +92,17 @@ public class ExceptionHandlerMiddleware : IMiddleware
         );
     }
     
+    private ErrorMessage HandleConflictException(ConflictException e)
+    {
+        return new ErrorMessage
+        (
+            StatusCode: HttpStatusCode.Conflict,
+            Title: "Conflict",
+            Details: e.Message,
+            Timestamp: DateTime.UtcNow
+        );
+    }
+
     private ErrorMessage HandleUnexpectedException(Exception e)
     {
         Console.WriteLine(e.Message);

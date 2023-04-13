@@ -49,6 +49,12 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("varchar(250)");
 
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
 
                     b.ToTable("Books");
@@ -70,6 +76,9 @@ namespace Infrastructure.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("Id")
                         .HasColumnType("bigint");
 
                     b.Property<int?>("Rate")
@@ -96,6 +105,10 @@ namespace Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
+                    b.Property<string>("AccountStatus")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
@@ -116,19 +129,11 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)");
 
-                    b.Property<string>("Firstname")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Surname")
                         .IsRequired()
                         .HasColumnType("longtext");
 

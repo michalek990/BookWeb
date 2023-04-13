@@ -1,4 +1,5 @@
-﻿using Application.Models.Interfaces;
+﻿using Application.Common.Exceptions;
+using Application.Models.Interfaces;
 using Application.Models.Pagination;
 using Domain.Common.Pagination.Request;
 
@@ -14,7 +15,7 @@ public static class PaginationHelper
         if (sortBy is not null && !columnSelector.ContainsKey(sortBy))
         {
             var columns = string.Join(", ", columnSelector.Keys);
-            //throw new badrequestException
+            throw new BadRequestException("");
         }
 
         SortRequest<T>? sort = null;
