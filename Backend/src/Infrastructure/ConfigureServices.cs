@@ -23,14 +23,6 @@ public static class ConfigureServices
     {
         services.AddDbContext<AppDbContext>();
     }
-
-    public static void AddRepositories(this IServiceCollection services)
-    {
-        services.AddScoped<IUserRepository, UserRepository>();
-        services.AddScoped<IReviewRepository, ReviewRepository>();
-        services.AddScoped<IBookRepository, BookRepository>();
-        services.AddScoped<IUnitOfWork, UnitOfWork>();
-    }
     
     public static void AddBeforeSaveChangesPipeline(this IServiceCollection services)
     {
@@ -38,6 +30,14 @@ public static class ConfigureServices
         services.AddScoped<IAddUpdateInfoOperation, AddUpdateInfoOperation>();
         services.AddScoped<IRemovalHandlingOperation, RemovalHandlingOperation>();
         services.AddScoped<IBeforeSaveChangesPipelineBuilder, BeforeSaveChangesPipelineBuilder>();
+    }
+
+    public static void AddRepositories(this IServiceCollection services)
+    {
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IReviewRepository, ReviewRepository>();
+        services.AddScoped<IBookRepository, BookRepository>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
     }
 
     public static void AddAuthenticationAndAuthorization(this IServiceCollection services, IConfiguration configuration,

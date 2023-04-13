@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Domain.Entities;
+using Infrastructure.Presistence.Pipeline;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Presistence;
@@ -7,10 +8,13 @@ namespace Infrastructure.Presistence;
 public class AppDbContext : DbContext
 {
     private readonly IConfiguration _configuration;
+    private readonly BeforeSaveChangesPipeline _beforeSaveChangesPipeline;
 
-    public AppDbContext(IConfiguration configuration)
+    
+    public AppDbContext(IConfiguration configuration, IBeforeSaveChangesPipelineBuilder builder)
     {
         _configuration = configuration;
+        _beforeSaveChangesPipeline = builder.Build();
     }
     
     public DbSet<Book> Books => Set<Book>();
@@ -68,6 +72,20 @@ public class AppDbContext : DbContext
             .Property(b => b.Title)
             .IsRequired()
             .HasMaxLength(250);
+    }
+    
+    public override int SaveChanges()
+    {
+        _beforeSaveChangesPipeline.Invoke(ChangeTracker.Entries());
+        
+        return base.SaveChanges();
+    }
+    
+    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
+    {
+        _beforeSaveChangesPipeline.Invoke(ChangeTracker.Entries());
+
+        return base.SaveChangesAsync(cancellationToken);
     }
     
     protected override void OnConfiguring(DbContextOptionsBuilder options)

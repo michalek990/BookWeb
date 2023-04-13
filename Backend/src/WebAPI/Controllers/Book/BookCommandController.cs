@@ -17,7 +17,7 @@ public sealed class BookCommandController : ControllerBase
         _mediator = mediator;
     }
 
-   // [AuthorizeUser]
+   [AuthorizeUser]
     [HttpPost]
     public async Task<ActionResult<CreateBookDto>> CreateNewBook([FromBody] CreateBookCommand command)
     {
